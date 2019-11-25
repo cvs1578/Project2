@@ -37,6 +37,7 @@ public:
 			fin >> code; //This passes in everything else in the line (the code);
 			insert(letter, code);
 		}
+		fin.close();
 	};
 
 	//Returns only one letter
@@ -88,6 +89,47 @@ public:
 		return message;
 	};
 
+	//This converts a word to morse code
+	//NOTE: Assumes that the code is only lower case letters
+	string encode(string code)
+	{
+		string x = ""; 
+		char letter;
+		for (int i = 0; i < code.size(); i++)
+		{
+			x = x + encodeWord(code[i]);
+		}
+		return x;
+
+	};
+	string encodeWord(char letter)
+	{
+		ifstream fin; //We're passing in the morse code .txt file
+		fin.open("morse.txt");
+
+		char comp; // This is the letter
+		string code; // This is morse code
+						 //NOTE: root does not have any values, just points towards left and right
+		if (letter == ' ')
+		{
+			return " ";
+		}
+
+		while (fin.good()) 
+		{
+			fin >> comp; // This passes only the first character of each line (letter)
+			fin >> code; //This passes in everything else in the line (the code);
+			if (letter == comp)
+			{
+				fin.close();
+				return (code + " ");
+			}
+		}
+
+		fin.close();
+		return "ERROR: Use only lower case letters";
+
+	}
 
 
 private:
