@@ -7,8 +7,7 @@ using namespace std;
 void main()
 {
 	MorseTree tree;
-	char x = tree.getletter("....");
-	cout << x << endl;
-	cout << tree.decode(".... . ._.. ._.. ___");
+	cout << tree.decode(".... . ._.. ._.. ___") << endl;
+	cout << tree.encode("abcxyz");
 	cin.ignore();
 }
